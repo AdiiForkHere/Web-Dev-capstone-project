@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>{{ quiz_name.upper() }} Quiz</h2>
+
+    <h3>⏳ Time Left: <span id="timer">10</span>s</h3>
+
+    <form id="quizForm" method="POST" action="/submit/{{ quiz_name }}">
+        
+        {% for q in questions %}
+        {% set outer_index = loop.index0 %}
+
+        <div class="question" style="display: none;">
+            <p><b>{{ loop.index }}. {{ q.q }}</b></p>
+
+            {% for opt in q.options %}
+            <div class="option">
+                <input type="radio" name="q{{ outer_index }}" value="{{ opt }}">
+                {{ opt }}
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endfor %}
+
+        <button type="submit" id="submitBtn" style="display:none;">Submit</button>
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

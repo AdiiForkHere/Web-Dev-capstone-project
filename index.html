@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🔥 Quiz Portal</h1>
+    <p>Select a quiz</p>
+
+    {% for quiz in quizzes %}
+    <div class="quiz-card">
+        <h3>{{ quiz.upper() }} Quiz</h3>
+        <a href="/quiz/{{ quiz }}">
+            <button>Start Quiz</button>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
